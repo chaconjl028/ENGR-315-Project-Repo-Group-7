@@ -37,6 +37,65 @@ For question 3, we will find the shapes of the normal distribution for the "weig
 
 ## Results
 
+## Question 2: How consistent is the distribution of the game rankings when considering the game's average user rating?
+
+### Methodology
+To answer this question, we examined two columns from the dataset: `sortindex`, representing the board game ranking, and `average`, representing the average user rating on a scale from 1 to 10. The dataset contained no missing values in either column. However, 95 games contained invalid rankings or ratings and were removed, leaving 19,905 games for analysis.
+
+Four statistical methods were used:
+Pearson Correlation: Measures the strength of the linear relationship between rankings and ratings.
+Spearman Correlation: Measures the strength of the monotonic relationship between rankings and ratings.
+Linear Regression: Models the relationship between rankings and ratings.
+Chi-Square Goodness-of-Fit Test: Compares the observed rating distribution to a uniform distribution.
+
+A significance level of 0.05 was used.
+
+#### Descriptive Statistics
+
+| Metric | Value |
+|---|---:|
+| Original sample size | 20,000 |
+| Valid sample size | 19,905 |
+| Excluded games | 95 |
+| Mean rating | 6.3054 |
+| Median rating | 6.3577 |
+| Standard deviation | 0.9755 |
+| Minimum rating | 1.0000 |
+| Maximum rating | 9.4429 |
+
+#### Correlation and Linear Regression
+
+| Metric | Result |
+|---|---:|
+| Pearson correlation | -0.7186 |
+| Spearman correlation | -0.7485 |
+| Regression slope | -0.00012190 |
+| Regression intercept | 7.5189 |
+| R-squared | 0.5164 |
+
+Both correlation coefficients demonstrate a strong negative relationship between numerical ranking and average user rating. Better-ranked games generally receive higher user ratings. The linear regression model accounts for 51.64% of the variation in average user ratings. For every increase of 1,000 positions in numerical ranking, the predicted rating decreases by 0.1219 points.
+
+#### Chi-Square Goodness-of-Fit Test
+
+The average user ratings were divided into nine equal intervals between 1 and 10. The observed frequencies were compared against the expected frequencies of a uniform distribution.
+
+Null Hypothesis: Average user ratings follow a uniform distribution.
+Alternative Hypothesis: Average user ratings do not follow a uniform distribution.
+
+| Metric | Result |
+|---|---:|
+| Significance level | 0.05 |
+| Expected frequency per interval | 2,211.67 |
+| Chi-square statistic | 32,008.5423 |
+| Degrees of freedom | 8 |
+| P-value | < 0.0001 |
+| Null hypothesis | Rejected |
+
+Since the p-value was less than 0.05, the null hypothesis was rejected. Average user ratings do not follow a uniform distribution. Of the games analyzed, 88.39% received ratings between 5 and below 8. The most common rating interval was 6 to below 7, containing 41.55% of the games.
+
+### Conclusions
+
+Our results did not support our initial expectation of a uniform distribution. Most board game ratings were concentrated between 5 and 8, with few games receiving extremely high or low ratings. The correlation and regression analyses demonstrated a strong relationship between board game rankings and average user ratings. However, some lower-ranked games still received high ratings, meaning that average user ratings alone do not fully explain board game rankings. Other factors, such as the number of user ratings, may influence rankings but were not examined in this analysis.
 
 ## Conclusions
 
